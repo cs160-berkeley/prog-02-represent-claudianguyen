@@ -12,10 +12,10 @@ See [represent] (http://youtu.be/mXnPo6dsi1s?hd=1)
 
 ## Screenshots
 
-<img src="screenshots/main.png" height="400" alt="Screenshot"/>
-<img src="screenshots/2.png" height="400" alt="Screenshot"/>
-<img src="screenshots/3.png" height="400" alt="Screenshot"/>
-<img src="screenshots/4.png" height="400" alt="Screenshot"/>
+<img src="screenshots/1.PNG" height="400" alt="Screenshot"/>
+<img src="screenshots/2.PNG" height="400" alt="Screenshot"/>
+<img src="screenshots/3.PNG" height="400" alt="Screenshot"/>
+<img src="screenshots/4.PNG" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
