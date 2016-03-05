@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <ImageView
+    android:layout_width="110dp"
+    android:layout_height="110dp"
+    android:id="@+id/item_iconPic"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true"
+    android:src="@drawable/barbara" />
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceMedium"
+    android:text="First Last Name"
+    android:id="@+id/item_txtName"
+    android:layout_alignParentTop="true"
+    android:layout_toEndOf="@+id/item_iconPic"
+    android:layout_marginStart="33dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Senator/Rep"
+        android:id="@+id/item_txtTitle"
+        android:layout_below="@+id/item_txtName"
+        android:layout_alignStart="@+id/item_txtName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Party Affiliation"
+        android:id="@+id/item_txtParty"
+        android:layout_below="@+id/item_txtTitle"
+        android:layout_alignStart="@+id/item_txtTitle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Email Address"
+        android:id="@+id/item_txtEmail"
+        android:layout_below="@+id/item_txtParty"
+        android:layout_alignStart="@+id/item_txtParty" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="website"
+        android:id="@+id/item_txtWebsiteurl"
+        android:layout_below="@+id/item_txtEmail"
+        android:layout_alignStart="@+id/item_txtEmail" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Twitter tweet"
+        android:id="@+id/item_txtTweet"
+        android:layout_below="@+id/item_txtWebsiteurl"
+        android:layout_alignStart="@+id/item_txtWebsiteurl" />
+
+</RelativeLayout>

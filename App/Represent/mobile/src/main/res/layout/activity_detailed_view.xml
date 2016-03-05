@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.jacobsbytes.represent.detailedView">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/back"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageView
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/nancy"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Nancy Pelosi"
+        android:id="@+id/item_txtName"
+        android:layout_marginTop="44dp"
+        android:layout_marginStart="34dp"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Representative"
+        android:id="@+id/item_txtTitle"
+        android:layout_below="@+id/item_txtName"
+        android:layout_alignStart="@+id/item_txtName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Democrat"
+        android:id="@+id/item_txtParty"
+        android:layout_below="@+id/item_txtTitle"
+        android:layout_alignStart="@+id/item_txtTitle" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="End Date of Term:"
+        android:id="@+id/item_txtEndDate"
+        android:layout_marginTop="42dp"
+        android:layout_below="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Committee:"
+        android:id="@+id/item_txtCommitee"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/item_txtEndDate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Bills Sponsored:"
+        android:id="@+id/item_bills"
+        android:layout_below="@+id/item_txtCommitee"
+        android:layout_alignStart="@+id/item_txtCommitee"
+        android:layout_marginTop="31dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Janurary 3, 2017"
+        android:id="@+id/item_resDate"
+        android:layout_alignTop="@+id/item_txtEndDate"
+        android:layout_alignStart="@+id/item_txtParty" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="House-Judiciary"
+        android:id="@+id/item_resCommittee"
+        android:layout_alignTop="@+id/item_txtCommitee"
+        android:layout_alignStart="@+id/item_resDate" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="H.R. 4230:"
+        android:id="@+id/bills1"
+        android:layout_alignTop="@+id/item_bills"
+        android:layout_alignStart="@+id/item_resCommittee" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Emergency"
+        android:id="@+id/bills2"
+        android:layout_below="@+id/bills1"
+        android:layout_alignStart="@+id/bills1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Puerto Rico"
+        android:id="@+id/bills3"
+        android:layout_below="@+id/bills2"
+        android:layout_alignStart="@+id/bills2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/textView4"
+        android:layout_below="@+id/bills3"
+        android:layout_alignStart="@+id/bills3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Foreign Affairs"
+        android:id="@+id/bills4"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+</RelativeLayout>

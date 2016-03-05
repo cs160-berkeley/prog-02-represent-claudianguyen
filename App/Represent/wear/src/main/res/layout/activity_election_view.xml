@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainViewWatch"
+    tools:deviceIds="wear_round">
+
+    <!--<TextView-->
+    <!--android:id="@+id/text"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerHorizontal="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:text="@string/hello_round" />-->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="2012 Presidential Vote"
+        android:id="@+id/textView"
+        android:layout_marginTop="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CALIFORNIA"
+        android:id="@+id/item_txtState"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Alameda County"
+        android:id="@+id/item_txtCounty"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/item_txtState" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Obama"
+        android:id="@+id/item_txtObama"
+        android:layout_alignTop="@+id/item_txtRomney"
+        android:layout_alignStart="@+id/item_txtPercent1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Romney"
+        android:id="@+id/item_txtRomney"
+        android:layout_marginTop="27dp"
+        android:layout_below="@+id/item_txtCounty"
+        android:layout_alignEnd="@+id/item_txtState" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="58%"
+        android:id="@+id/item_txtPercent1"
+        android:layout_below="@+id/item_txtObama"
+        android:layout_alignStart="@+id/item_txtCounty" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="42%"
+        android:id="@+id/item_txtPercent2"
+        android:layout_below="@+id/item_txtRomney"
+        android:layout_alignEnd="@+id/item_txtState" />
+
+</RelativeLayout>
