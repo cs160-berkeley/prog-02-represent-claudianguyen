@@ -1,18 +1,21 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+An app that displays a list of congressionals of different locations.
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Claudia Nguyen ([nguyen.claudia@berkeley.edu](mailto:your_email@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
+See [represent] (http://youtu.be/mXnPo6dsi1s?hd=1)
 
 ## Screenshots
 
-<img src="screenshots/main.png" height="400" alt="Screenshot"/>
+<img src="screenshots/1.png" height="400" alt="Screenshot"/>
+<img src="screenshots/2.png" height="400" alt="Screenshot"/>
+<img src="screenshots/3.png" height="400" alt="Screenshot"/>
+<img src="screenshots/4.png" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
 
