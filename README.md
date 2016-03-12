@@ -8,7 +8,7 @@ Claudia Nguyen ([nguyen.claudia@berkeley.edu](mailto:your_email@berkeley.edu))
 
 ## Demo Video
 
-See [represent] (http://youtu.be/mXnPo6dsi1s?hd=1)
+See [represent] (http://youtu.be/XUs4LYfuA4I?hd=1)
 
 ## Screenshots
 
