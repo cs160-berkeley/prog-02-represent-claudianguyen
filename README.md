@@ -8,7 +8,7 @@ Claudia Nguyen ([nguyen.claudia@berkeley.edu](mailto:your_email@berkeley.edu))
 
 ## Demo Video
 
-See [represent] (http://youtu.be/XUs4LYfuA4I?hd=1)
+See [represent] (http://youtu.be/sJo-VYcjiRM?hd=1)
 
 ## Screenshots
 
@@ -18,8 +18,4 @@ See [represent] (http://youtu.be/XUs4LYfuA4I?hd=1)
 <img src="screenshots/4.PNG" height="400" alt="Screenshot"/>
 
 ## Acknowledgments
-
-
-
-* Hat tip to anyone who's code was used
-* Any other support
+* Stack Overflow
