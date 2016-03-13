@@ -6,22 +6,22 @@ package com.jacobsbytes.represent;
 
 public class Members {
 
-    private int iconId;
+//    private int iconId;
     private String name;
     private String title;
     private String party;
 
-    public Members (int iconId, String title, String name, String party) {
+    public Members (String title, String name, String party) {
         super();
-        this.iconId = iconId;
+//        this.iconId = iconId;
         this.title = title;
         this.name = name;
         this.party = party;
     }
-
-    public int getIconId() {
-        return iconId;
-    }
+//
+//    public int getIconId() {
+//        return iconId;
+//    }
 
     public String getTitle() {
         return title;

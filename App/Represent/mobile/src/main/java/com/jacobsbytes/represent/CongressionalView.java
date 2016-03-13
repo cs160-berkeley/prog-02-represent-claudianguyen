@@ -1,8 +1,10 @@
 package com.jacobsbytes.represent;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -13,6 +15,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -21,73 +28,144 @@ import java.util.ArrayList;
 public class CongressionalView extends AppCompatActivity implements View.OnClickListener {
 
     private List<Congressionals> myCongressionals = new ArrayList<Congressionals>();
-    Button back;
-//    EditText zipCodeTxt;
-//    Button search;
+    Button back; EditText zipCodeTxt; Button secondSearch; String zipCodeStr;
+    String name; String website; String chamber;
+    String endTerm; String tweeterId;
+    String email; String party; String bioguide_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_congressional_view);
 
+        name = new String(); website = new String(); tweeterId = new String();
+        chamber = new String(); endTerm = new String();
+        email = new String(); party = new String(); bioguide_id = new String();
+
+
         back = (Button) findViewById(R.id.back);
         back.setOnClickListener(this);
 //
-//        zipCodeTxt = (EditText) findViewById(R.id.item_enterZip);
-//        zipCodeTxt.setOnClickListener(this);
+        zipCodeTxt = (EditText) findViewById(R.id.enterZip);
+        zipCodeTxt.setOnClickListener(this);
 
-//        search = (Button) findViewById(R.id.searchZip);
-//        search.setOnClickListener(this);
+        secondSearch = (Button) findViewById(R.id.secondSearch);
+        secondSearch.setOnClickListener(this);
+        zipCodeStr = new String();
+//        populateCongressionals();
 
-        //on click method here!!!
-        populateCongressionals();
-        populateListView();
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras != null) {
+            zipCodeStr = extras.getString("zip_code");
+            zipCodeTxt.setText(zipCodeStr);
+        }
+
+        String apikey = "3a742877313b429ea3b0a0d18da19c1d";
+        String baseURL = "https://congress.api.sunlightfoundation.com";
+        String zipAddition = "/legislators/locate?zip=" + zipCodeStr + "&apikey="+apikey;
+        String url = baseURL + zipAddition;
+        new ProcessJSON().execute(url);
+
         registerClickCallback();
-
-//        Intent intent = getIntent();
-//        Bundle extras = intent.getExtras();
-
-//        if (extras != null) {
-//            String zipCodeStr = extras.getString("zip_code");
-//            zipCodeTxt.setText(zipCodeStr);
-//        }
-
-
-
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.back:
                 finish();
                 break;
-//            case R.id.search:
-//                Intent sendIntentZipWatch = new Intent(getBaseContext(), PhoneToWatchService.class);
-//
-//                startService(sendIntentZipWatch);
-
-
+            case R.id.secondSearch:
+                Intent sendIntentZipWatch = new Intent(getBaseContext(), PhoneToWatchService.class);
+                sendIntentZipWatch.putExtra("/view", "election");
+                startService(sendIntentZipWatch);
+                break;
         }
     }
 
-    private void populateCongressionals() {
-        Congressionals first = new Congressionals(R.drawable.barbara, "Senator", "Barbara Boxer", "Democrat", "boxer@gmail.com", "barbaraboxer.com", "T love America!");
-        Congressionals sec = new Congressionals(R.drawable.paul, "Representative", "Paul Cook", "Democrat", "cook@gmail.com", "paulcook.com", "T love America too!");
-        Congressionals third = new Congressionals(R.drawable.diane, "Senator", "Diane Feinstein", "Democrat", "feinstein@gmail.com", "dianefeinst.com", "T love America!");
-        Congressionals fourth = new Congressionals(R.drawable.nancy, "Representative", "Nancy Pelosi", "Democrat", "polsi@gmail.com", "nancypolsi.com", "T love America too!");
-        myCongressionals.add(first);
-        myCongressionals.add(sec);
-        myCongressionals.add(third);
-        myCongressionals.add(fourth);
+    private class ProcessJSON extends AsyncTask<String, Void, String> {
+        protected String doInBackground(String... strings) {
+            String stream = null;
+            String urlString = strings[0];
+            HTTPDataHandler hh = new HTTPDataHandler();
+            stream = hh.GetHTTPData(urlString);
+            // Return the data from specified url
+            return stream;
+        }
+
+        protected void onPostExecute(String stream) {
+            if (stream != null) {
+                try {
+                    // Get the full HTTP Data as JSONObject
+                    JSONObject reader = new JSONObject(stream);
+                    // Get the JSONObject "result"
+                    JSONArray results = reader.getJSONArray("results");
+                    for (int i = 0; i < results.length(); i ++) {
+                        JSONObject obj1 = results.getJSONObject(i);
+                        String firstName = obj1.getString("first_name");
+                        String lastName = obj1.getString("last_name");
+                        name = firstName + " " + lastName;
+                        String title1 = obj1.getString("title");
+                        if (title1.equals("Sen")) {
+                            chamber = "Senator";
+                        } else {
+                            chamber = "Representative";
+                        }
+                        website = obj1.getString("website");
+                        tweeterId = obj1.getString("twitter_id");
+                        endTerm = obj1.getString("term_end");
+                        email = obj1.getString("oc_email");
+                        party = obj1.getString("party");
+                        bioguide_id = obj1.getString("bioguide_id");
+                        if (party.equals("D")) {
+                            party = "Democrat";
+                        } else {
+                            party = "Republican";
+                        }
+
+                        Congressionals first = new Congressionals(R.drawable.barbara, chamber, name, party, email, website, "I love America!", endTerm, bioguide_id);
+                        myCongressionals.add(first);
+
+
+
+
+
+                    }
+                    populateListView();
+                    Intent sendIntent = new Intent(getBaseContext(), PhoneToWatchService.class);
+//
+                    JSONObject obj;
+                    JSONArray jsonArray = new JSONArray();
+                    for (int i = 0; i < myCongressionals.size(); i++) {
+                        obj = new JSONObject();
+                        try {
+                            obj.put("name", myCongressionals.get(i).getName());
+                            obj.put("title", myCongressionals.get(i).getTitle());
+                            obj.put("party", myCongressionals.get(i).getParty());
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        jsonArray.put(obj);
+                    }
+
+//                    System.out.println(jsonArray.toString());
+                    sendIntent.putExtra("/jsonArray", jsonArray.toString());
+                    startService(sendIntent);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
     private void populateListView() {
         ArrayAdapter<Congressionals> adapter = new MyListAdapter();
         ListView list = (ListView) findViewById(R.id.listView);
         list.setAdapter(adapter);
-//        String[] party = {"dem", "Reb"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.congressionalslistview, R.id.textView1, party);
-//        ListView list = (ListView) findViewById(R.id.listView);
-//        list.setAdapter(adapter);
     }
 
     private void registerClickCallback() {
@@ -95,11 +173,14 @@ public class CongressionalView extends AppCompatActivity implements View.OnClick
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                Congressionals clickedMember = myCongressionals.get(position);
                 Intent detailedView = new Intent(getApplicationContext(), com.jacobsbytes.represent.detailedView.class);
-//                detailedView.putExtra("hi", name of what you want to put in );
+                Congressionals c = myCongressionals.get(position);
+                detailedView.putExtra("name", c.getName());
+                detailedView.putExtra("title", c.getTitle());
+                detailedView.putExtra("party", c.getParty());
+                detailedView.putExtra("end_date", c.getEndTerm());
+                detailedView.putExtra("bioguide_id", c.getBioguide_id());
                 startActivity(detailedView);
-
             }
         });
     }
@@ -119,6 +200,7 @@ public class CongressionalView extends AppCompatActivity implements View.OnClick
             }
 
             //find the congressional to work with
+
             Congressionals currMembers = myCongressionals.get(position);
 
 

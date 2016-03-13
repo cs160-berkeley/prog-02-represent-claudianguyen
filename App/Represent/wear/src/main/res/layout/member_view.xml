@@ -8,15 +8,6 @@
 
     <!--android:background="#FFFFFF"-->
 
-    <ImageButton
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:id="@+id/item_photo"
-        android:layout_gravity="center_horizontal"
-        android:adjustViewBounds="true"
-        android:src="@drawable/nancy"
-        android:scaleType="fitCenter" />
-
     <!--<ImageView-->
         <!--android:layout_width="100dp"-->
         <!--android:layout_height="100dp"-->

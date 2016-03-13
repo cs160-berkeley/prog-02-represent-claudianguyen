@@ -18,6 +18,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,13 +29,25 @@ public class MainViewWatch extends Activity implements WearableListView.ClickLis
 
     private WearableListView listView;
     private ArrayList<Members> myMembers = new ArrayList<Members>();
-    private ArrayList<Members> myMembers2 = new ArrayList<Members>();
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_represent);
+
+//        Button moreInfo = (Button) findViewById(R.id.moreInfoButt);
+//        moreInfo.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
+//                    startService(sendIntent);
+//                }
+//            });
+
+
+
 
 
 
@@ -45,39 +61,37 @@ public class MainViewWatch extends Activity implements WearableListView.ClickLis
             }
         });
 
+        Intent intent = getIntent();
+        String jsonArray = intent.getStringExtra("jsonArray");
 
+        if (jsonArray != null) {
+            try {
+                JSONArray array = new JSONArray(jsonArray);
+//                System.out.println(array.toString(2));
+                try {
+                    for (int i = 0; i < array.length(); i ++) {
+                        JSONObject obj1 = array.getJSONObject(i);
+                        String name = obj1.getString("name");
+                        String party = obj1.getString("party");
+                        String title = obj1.getString("title");
+                        myMembers.add(new Members(title, name, party));
+                        System.out.println("HEEREREREREER");
+                        System.out.println(myMembers);
+                    }
 
-        populateMembers();
-        populateMembers2();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
 
-
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
-
-
-    private void populateMembers() {
-        Members first = new Members(R.drawable.barbara, "Senator", "Barbara Boxer", "Democrat");
-        Members sec = new Members(R.drawable.nancy, "Representative", "Nancy Pelosi", "Democrat");
-        Members third = new Members(R.drawable.diane, "Senator", "Diane Feinstein", "Democrat");
-        Members fourth = new Members(R.drawable.paul, "Representative", "Paul Cook", "Democrat");
-        myMembers.add(first);
-        myMembers.add(sec);
-        myMembers.add(third);
-        myMembers.add(fourth);
-    }
-
-    private void populateMembers2() {
-        Members first2 = new Members(R.drawable.barbara, "Senator", "Kansen Chu", "Democrat");
-        Members sec2 = new Members(R.drawable.paul, "Representative", "Bob Wieckowski", "Democrat");
-        Members third2 = new Members(R.drawable.diane, "Senator", "Diane Feinstein", "Democrat");
-        myMembers2.add(first2);
-        myMembers2.add(sec2);
-        myMembers2.add(third2);
-    }
-
-    //When i click on a list item, i should be able to open an intent.
 
     @Override
     public void onClick(WearableListView.ViewHolder viewHolder) {
+
 
     }
 
@@ -89,7 +103,6 @@ public class MainViewWatch extends Activity implements WearableListView.ClickLis
     private class MyAdapter extends WearableListView.Adapter {
 
         private final LayoutInflater inflater;
-
         private MyAdapter(Context c) {
             inflater = LayoutInflater.from(c);
         }
@@ -97,23 +110,16 @@ public class MainViewWatch extends Activity implements WearableListView.ClickLis
         @Override
         public WearableListView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
 
+
+
             Button electionButton = (Button) findViewById(R.id.electionButton);
             electionButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-
                     Intent electionView = new Intent(getApplicationContext(), com.jacobsbytes.represent.electionView.class);
                     startActivity(electionView);
                 }
             });
-
-            Log.d("testing", "did create item photo");
-
-            Intent intent = getIntent();
-            Bundle extras = intent.getExtras();
-
-
 
             return new WearableListView.ViewHolder(inflater.inflate(R.layout.member_view, null));
         }
@@ -121,11 +127,6 @@ public class MainViewWatch extends Activity implements WearableListView.ClickLis
         @Override
         public void onBindViewHolder(WearableListView.ViewHolder viewHolder, int i) {
 
-            //get photo out
-            Log.d("testing", "blah2");
-
-            ImageButton imageButton = (ImageButton) viewHolder.itemView.findViewById(R.id.item_photo);
-            imageButton.setImageResource(myMembers.get(i).getIconId());
 
             TextView name = (TextView) viewHolder.itemView.findViewById(R.id.item_txtName);
             name.setText(myMembers.get(i).getName());
@@ -136,14 +137,6 @@ public class MainViewWatch extends Activity implements WearableListView.ClickLis
             TextView party = (TextView) viewHolder.itemView.findViewById(R.id.item_txtParty);
             party.setText(myMembers.get(i).getParty());
 
-
-            imageButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-                    startService(sendIntent);
-                }
-            });
 
         }
 
@@ -162,26 +155,3 @@ public class MainViewWatch extends Activity implements WearableListView.ClickLis
 
 
 
-
-
-
-
-
-
-//        Intent intent = getIntent();
-//        Bundle extras = intent.getExtras();
-//
-//        if (extras != null) {
-//            String mem_name = extras.getString("MEM_NAME");
-//            mFeedBtn.setText("Feed " + catName);
-//        }
-
-//        mFeedBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent sendIntent = new Intent(getBaseContext(), WatchToPhoneService.class);
-//                startService(sendIntent);
-//            }
-//        });
-//    }
-//}

@@ -45,12 +45,12 @@ public class CurrLocation extends AppCompatActivity implements View.OnClickListe
     }
 
     private void populateCongressionals() {
-        Congressionals first = new Congressionals(R.drawable.barbara, "Senator", "Barbara Boxer", "Democrat", "boxer@gmail.com", "barbaraboxer.com", "T love America!");
-        Congressionals sec = new Congressionals(R.drawable.paul, "Representative", "Paul Cook", "Democrat", "cook@gmail.com", "paulcook.com", "T love America too!");
-        Congressionals third = new Congressionals(R.drawable.nancy, "Representative", "Nancy Polsi", "Democrat", "polsi@gmail.com", "nancypolsi.com", "T love America too!");
-        myCongressionals.add(first);
-        myCongressionals.add(sec);
-        myCongressionals.add(third);
+//        Congressionals first = new Congressionals(R.drawable.barbara, "Senator", "Barbara Boxer", "Democrat", "boxer@gmail.com", "barbaraboxer.com", "T love America!");
+//        Congressionals sec = new Congressionals(R.drawable.paul, "Representative", "Paul Cook", "Democrat", "cook@gmail.com", "paulcook.com", "T love America too!");
+//        Congressionals third = new Congressionals(R.drawable.nancy, "Representative", "Nancy Polsi", "Democrat", "polsi@gmail.com", "nancypolsi.com", "T love America too!");
+//        myCongressionals.add(first);
+//        myCongressionals.add(sec);
+//        myCongressionals.add(third);
     }
 
     private void populateListView() {

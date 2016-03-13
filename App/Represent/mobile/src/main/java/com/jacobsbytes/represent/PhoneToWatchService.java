@@ -50,28 +50,28 @@ public class PhoneToWatchService extends Service {
         // Which cat do we want to feed? Grab this info from INTENT
         // which was passed over when we called startService
         // THIS IS WHERE YOU CAN PARSE WHAT YOU DID IN INTENT
-//        Bundle extras = intent.getExtras();
-//        final String memberName = extras.getString("MEMBER_NAME");
-        final Bundle extras = intent.getExtras();
+        Bundle extras = intent.getExtras();
+//        final String view = extras.getString("/view"); // POPULATED BY FRED when you click feed fred button/ get fred's name
+        final String jsonArr = extras.getString("/jsonArray"); // contents of watchStr
+        System.out.println("in phone to watch");
+        System.out.println(jsonArr);
         // Send the message with the cat name
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                //first, connect to the apiclient REALLY IMPORTANT
-                mApiClient.connect();
-                //now that you're connected, send a massage with the cat name
-//                sendMessage("/" + memberName, memberName);
-//                Log.d("intent", "in thread");
-//                if (extras != null) {
-//                    sendMessage("/Scroll", "Scroll");
-//                } else {
-//                    sendMessage("/Election", "Election");
-//                }
-            }
-        }).start();
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    //first, connect to the apiclient REALLY IMPORTANT
+                    mApiClient.connect();
+                    //now that you're connected, send a massage with the cat name
+                    sendMessage("/jsonArray", jsonArr);
+//                    sendMessage("/watchStr", watchStr);
+
+                }
+            }).start();
 
         return START_STICKY;
     }
+
 
     @Override //remember, all services need to implement an IBiner
     public IBinder onBind(Intent intent) {
